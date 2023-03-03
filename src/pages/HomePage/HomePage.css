@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+
+.signIn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 50px;
+    
+    
+}
+
+.button{
+    margin-top: 100px;
+    color: white;
+    padding: 60px;
+    
+}
+
+.join{
+    background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm383-15-ko0z2amt.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=9b568b3596280892e96d4b719d27470c");
+    width: 100vw;
+    height: 535px;
+    background-size: fill;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.manDiv{
+    height: 100vh;
+}
+
+.musicBox{
+    width: min-content;
+    height: min-content;
+   margin-left: 760px;
+}
+
+.playbox{
+    background-image: url("../../../public/fondoalrevez.jpg");
+    width: 100vw;
+    height: 370px;
+    background-size: fill;
+}

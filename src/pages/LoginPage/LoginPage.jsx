@@ -1,73 +1,151 @@
-import "./LoginPage.css";
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth.context";
-import authService from "../../services/auth.service";
+import "./LoginPage.css"
 
-function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+import {
+	Form,
+	Link,
+	useActionData,
+	useNavigate,
+	useOutletContext
+} from "react-router-dom"
 
-  const navigate = useNavigate();
+import authService from "../../services/auth.service"
+import { Box, Button, createTheme, TextField, Typography } from "@mui/material"
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+export const loginPageAction = async ({ request }) => {
+	const formData = await request.formData()
+	const email = formData.get("email")
+	const password = formData.get("password")
 
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePassword = (e) => setPassword(e.target.value);
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    const requestBody = { email, password };
-
-    // Send a request to the server using axios
-    /* 
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
-      .then((response) => {})
-    */
-
-    // Or using a service
-    authService
-      .login(requestBody)
-      .then((response) => {
-        // If the POST request is successful store the authentication token,
-        // after the token is stored authenticate the user
-        // and at last navigate to the home page
-        storeToken(response.data.authToken);
-        authenticateUser();
-        navigate("/");
-      })
-      .catch((error) => {
-        // If the request resolves with an error, set the error message in the state
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
-
-  return (
-    <div className="LoginPage">
-      <h1>Login</h1>
-
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
-  );
+	try {
+		const { data } = await authService.login({ email, password })
+		// Evite el requerir las funciones del contexto haciendo la llamada a la api
+		// y devolviendo el Token del context al componente, el componente lo pide del useActionData
+		// Y como el componente tiene acceso a los metodos del contexto, somos capaces de mantener la funcionalidad que ya existia.
+		return {
+			authToken: data.authToken,
+			error: null
+		}
+	} catch (error) {
+		const {
+			request: { response }
+		} = error
+		const { message } = JSON.parse(response)
+		return { error: message, authToken: null }
+	}
 }
 
-export default LoginPage;
+function LoginPage(a) {
+	const navigate = useNavigate()
+	const actionData = useActionData()
+	// Aqui extraemos las funciones del contexto que son necesarias para reflejar la autenticacion exitosa en la app
+	const { storeToken, authenticateUser } = useOutletContext()
+
+	// Como action data puede no traer informacion inicialmente, no podemos destructurar, pero creamos estas variables que pueden o no tener ese dato.
+	// Cuando el dato exista y se vuelva a pintar el componente, mostraremos el error o ejecutamos la funcionalidad que refleja la sesion en caso de traer el token.
+	const authToken = actionData?.authToken
+	const error = actionData?.error
+	console.log(authToken)
+
+	if (authToken) {
+		storeToken(authToken)
+		authenticateUser()
+		navigate("/")
+	}
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      fontSize: 20,
+    },
+  });
+
+  const submitHandler = (e) => {
+    console.log(e)
+    e.preventDefault()
+  }
+
+	return (
+		// <div className="LoginPage">
+		// 	<h1>Login</h1>
+
+		// 	<Form action="/login" method="POST">
+		// 		<label>Email:</label>
+		// 		<input type="email" name="email" />
+    
+		// 		<label>Password:</label>
+		// 		<input type="password" name="password" />
+    
+		// 		<button type="submit">Login</button>
+		// 	</Form>
+		// 	{error && <p className="error-message">{error}</p>}
+    
+		// 	<p>Don't have an account yet?</p>
+		// 	<Link to={"/signup"}> Sign Up</Link>
+		// </div>
+
+    <>
+    <div className="loginpage">
+    <div className="logintext" >
+    <Typography  theme={theme}> Login </Typography>
+    </div>
+    <Form action="/login" method="POST">
+      <div className="loginDiv">
+          <div className="input">
+          <TextField
+          required
+          label="Email"
+          type="email"
+          name="email"
+          color="secondary"
+          InputLabelProps={{
+          style: {
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            width: '100%',
+            color: 'white'
+          } }}
+          sx={{'& .MuiTextField-root': { m: 1, width: '25ch'}, '& fieldset': { borderColor: 'white'}, input: { color: 'white' } }}
+          
+        />
+        </div>
+        <div className="input">
+        <TextField 
+          label="Password"
+          type="password"
+          name="password"
+          color="secondary"
+          InputLabelProps={{
+          style: {
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            width: '100%',
+            color: 'white'
+          } }}
+         sx={{'& .MuiTextField-root': { m: 1, width: '25ch'}, '& fieldset': { borderColor: 'white'}, input: { color: 'white' } }}
+        />
+        </div>
+
+      <Button className="buttonLogin" type="submit" variant="contained" sx={{ bgcolor: "#F72585" }}>Login</Button>
+      </div>
+      </Form>
+      {error && <Typography theme={theme} className="error-message">{error}</Typography>}
+      </div>
+      </>
+
+	)
+}
+
+export default LoginPage

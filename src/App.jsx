@@ -1,51 +1,72 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import {Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import SignupPage from "./pages/SignupPage/SignupPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage, { signupPageAction } from "./pages/SignupPage/SignupPage";
+import LoginPage, { loginPageAction } from "./pages/LoginPage/LoginPage";
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 
+import{
+  createBrowserRouter, 
+  createRoutesFromElements, 
+  RouterProvider
+} from "react-router-dom"
+import Root from "./pages/Root/Root"
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Root/>}>
+    <Route 
+        path="/" 
+        element={
+            <>
+                <Navbar/>
+                <HomePage />
+            </>
+        }
+    />
+
+    <Route
+      path="/profile"
+      element={
+        <IsPrivate>
+           <Navbar/>
+          <ProfilePage />
+        </IsPrivate>
+      }
+    />
+
+    <Route
+      path="/signup"
+      action={signupPageAction}
+      element={
+        <IsAnon>
+          <Navbar/>
+          <SignupPage />
+        </IsAnon>
+      }
+    />
+    <Route
+      path="/login"
+      action={loginPageAction}
+      element={
+        <IsAnon>
+          <Navbar/>
+          <LoginPage />
+        </IsAnon>
+      }
+    />
+  </Route>
+  )
+)
 function App() {
-  return (
-    <div className="App">
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-
-        <Route
-          path="/profile"
-          element={
-            <IsPrivate>
-              <ProfilePage />
-            </IsPrivate>
-          }
-        />
-
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              <SignupPage />
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              <LoginPage />
-            </IsAnon>
-          }
-        />
-      </Routes>
-    </div>
-  );
+  return <RouterProvider router={router}/>
+  
 }
 
 export default App;

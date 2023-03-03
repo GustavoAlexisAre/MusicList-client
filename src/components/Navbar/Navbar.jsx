@@ -1,46 +1,213 @@
-import "./Navbar.css";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import PianoIcon from '@mui/icons-material/Piano';
+import { useOutletContext } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { createTheme } from '@mui/material/styles';
+import { Link } from '@mui/material';
 
-function Navbar() {
-  // Subscribe to the AuthContext to gain access to
-  // the values from AuthContext.Provider's `value` prop
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
+const pages = [];
+const settings = ['Profile', 'Dashboard', 'Logout','Login'];
+createTheme({
+  palette: {
+    primary: {
+      light: '#F72585',
+      main: '#F72585',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#F72585',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
+
+
+function ResponsiveAppBar() {
+  const { isLoggedIn, user, logOutUser } = useOutletContext()
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
-    <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
+    <AppBar position="static"  sx={{ bgcolor: "#F72585" }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <PianoIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            MusicList
+          </Typography>
 
-      {isLoggedIn && (
-        <>
-          <button onClick={logOutUser}>Logout</button>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <PianoIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            MusicList
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
 
-          <Link to="/profile">
-            <button>Profile</button>
-            {/* <img src="https://picsum.photos/id/402/200/300" style={{ width: 50, height: 50, borderRadius: 25}} alt="profile" /> */}
-          </Link>
-
-          <span>{user && user.name}</span>
-        </>
-      )}
-
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup">
-            {" "}
-            <button>Sign Up</button>{" "}
-          </Link>
-          <Link to="/login">
-            {" "}
-            <button>Login</button>{" "}
-          </Link>
-        </>
-      )}
-    </nav>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              {!isLoggedIn && (
+                <Avatar alt="" src={AccountCircleIcon} />
+              )}
+              {isLoggedIn && (
+                <Avatar alt="" src="https://i.pinimg.com/originals/54/61/8e/54618e7e5e34af1388dfd703ec3d6554.jpg" />
+              )}
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              
+                {isLoggedIn && (
+                  <>
+                <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                <Link underline="none" href="/login" color="inherit">
+                  <Typography>{settings[0]}</Typography>
+                  </Link>
+                </MenuItem> 
+                <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                <Link underline="none" href="/login" color="inherit">
+                  <Typography>{settings[1]}</Typography>
+                  </Link>
+                </MenuItem> 
+                <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                <Link underline='none' component="button" variant="body2" onClick={logOutUser} color="inherit">
+                  <Typography>{settings[2]}</Typography>
+                  </Link>
+                </MenuItem>
+                </>
+                )}
+                {!isLoggedIn && (
+                <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                <Link underline="none" href="/login" color="inherit">
+                  <Typography>{settings[3]}</Typography>
+                  </Link>
+                </MenuItem>
+                )}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
-
-export default Navbar;
+export default ResponsiveAppBar;

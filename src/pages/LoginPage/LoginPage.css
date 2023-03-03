@@ -1,0 +1,35 @@
+.logintext{
+    color: white;
+    margin-left: 860px;
+    padding-top: 200px;
+}
+
+.loginDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left:650px;
+    margin-top: 30px;
+    border: 1px solid white;
+    width: 500px;
+    height: 400px;
+    background-color:transparent;
+   
+    
+}
+
+.input{
+    padding: 10px;
+}
+
+.buttonLogin{
+    background-color: #F72585;
+}
+
+.loginpage{
+    background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zODMtMTYuanBn.jpg");
+    background-size:cover;
+    width: 100vw;
+    height: 93.4vh;
+}
