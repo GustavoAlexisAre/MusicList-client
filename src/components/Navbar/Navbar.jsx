@@ -180,12 +180,12 @@ function ResponsiveAppBar() {
                 {isLoggedIn && (
                   <>
                 <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline="none" href="/login" color="inherit">
+                <Link underline="none" href="/profile" color="inherit">
                   <Typography>{settings[0]}</Typography>
                   </Link>
                 </MenuItem> 
                 <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline="none" href="/login" color="inherit">
+                <Link underline="none" href="/dashboard" color="inherit">
                   <Typography>{settings[1]}</Typography>
                   </Link>
                 </MenuItem> 

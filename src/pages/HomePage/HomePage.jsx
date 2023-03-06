@@ -11,6 +11,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 
 import "./HomePage.css";
+import { useOutletContext } from "react-router-dom";
 
 function HomePage() {
 
@@ -31,7 +32,8 @@ function HomePage() {
       fontSize: 45,
     },
   });
- 
+  
+  const { isLoggedIn, user, logOutUser } = useOutletContext()
 
   return (
     <>
@@ -43,12 +45,18 @@ function HomePage() {
         <Typography>Join us and make your playlist.</Typography>
         <Typography>Share it with your friends and make the biggest playlist ever.</Typography>
       </ThemeProvider>
-        
-        <Link  underline="none" href="/signup" className="button">
-        
+      {isLoggedIn && (
+          <Link  underline="none" href="/dashboard" className="button">
+						{" "}
+						<Button sx={{ bgcolor: "#F72585" }} className="button" variant="contained"><Typography sx={{fontSize:25}}>Dashboard</Typography></Button>
+					</Link>
+      )}
+      {!isLoggedIn && (
+          <Link  underline="none" href="/signup" className="button">
 						{" "}
 						<Button sx={{ bgcolor: "#F72585" }} className="button" variant="contained"><Typography sx={{fontSize:25}}>Sign Up</Typography></Button>
 					</Link>
+      )}
           </div> 
         </section>
         </div>

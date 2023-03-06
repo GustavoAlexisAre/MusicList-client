@@ -1,0 +1,15 @@
+.cardDisc{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:0 50px;
+    background-color: #4895EF;
+}
+
+.discdetails{
+    background-color: #480CA8;
+    height: 100% ;
+}
+

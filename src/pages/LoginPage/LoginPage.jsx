@@ -44,7 +44,6 @@ function LoginPage(a) {
 	// Cuando el dato exista y se vuelva a pintar el componente, mostraremos el error o ejecutamos la funcionalidad que refleja la sesion en caso de traer el token.
 	const authToken = actionData?.authToken
 	const error = actionData?.error
-	console.log(authToken)
 
 	if (authToken) {
 		storeToken(authToken)
@@ -70,10 +69,6 @@ function LoginPage(a) {
     },
   });
 
-  const submitHandler = (e) => {
-    console.log(e)
-    e.preventDefault()
-  }
 
 	return (
 		// <div className="LoginPage">
@@ -139,8 +134,14 @@ function LoginPage(a) {
         </div>
 
       <Button className="buttonLogin" type="submit" variant="contained" sx={{ bgcolor: "#F72585" }}>Login</Button>
+      <div className="loginsignup">
+      <Typography>Don't have an account yet?</Typography>
+       <Button  href={"/signup"}> Sign Up</Button>
+       </div>
       </div>
+      
       </Form>
+      
       {error && <Typography theme={theme} className="error-message">{error}</Typography>}
       </div>
       </>

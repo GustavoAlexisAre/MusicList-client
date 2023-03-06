@@ -1,0 +1,24 @@
+.trackCard{
+   
+    background-color: #4895EF;
+    width: 100vw;
+    height: 96.2vh;
+    padding: 40px;
+    border: 1px solid black;
+
+}
+
+.CardMusic{
+    margin: 10px;
+    width: 400px;
+    height: 170px;
+   
+}
+
+.trackcardBox{
+    border: 1px solid black; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: min-content;
+}
