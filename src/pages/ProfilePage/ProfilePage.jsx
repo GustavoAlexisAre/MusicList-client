@@ -1,31 +1,51 @@
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button/Button";
-import { Form, redirect, useOutletContext } from "react-router-dom";
+import { Form, redirect, useLoaderData, useOutletContext } from "react-router-dom";
 import "./ProfilePage.css";
-import { createPlayList } from "../../services/spotify.service";
-import { useState } from "react";
+import { createPlayList, getPlayList, getUser } from "../../services/spotify.service";
+import { useEffect, useState } from "react";
 import { getArtist } from "../../services/spotify.service";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import ArtistCard from "../../components/ArtistCard/ArtistCard"
+import Playlist from "../../components/Playlist/Playlist";
+
 
 export const createPlayListAction = async({request}) => {
   const formData = await request.formData()
   const name = formData.get("name")
   const userId = formData.get("userId")
-
   await createPlayList({name , userId})
   return redirect("/dashboard")
 }
 
+
+
 function ProfilePage() {
- const { isLoggedIn, user, logOutUser } = useOutletContext()
+ const { user, authenticateUser } = useOutletContext()
+//  authenticateUser()
+
+
+const [Userupdate, setUserupdate] = useState(null);
+
+useEffect(() => {
+  const UserData = async () => {
+    const data = await getUser(user._id);
+    setUserupdate(data);
+  };
+  UserData();
+}, [user._id]);
+
+console.log(Userupdate)
 
   return (
     <div className="profilepage">
       <h1>Profile page</h1>
       <Typography>{user.name}</Typography>
 {/* playlist */}
+{Userupdate ? Userupdate.data.data.playlists.map((playlists) => (
+  <Playlist key={playlists._id} {...playlists}/>
+)):null}
       <Button>Nueva Playlist</Button>
 {/* modal for input playlist */}
       <Form action="/profile" method="POST">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Form, useActionData, useLoaderData, useOutletContext } from "react-router-dom";
 import { getArtist } from "../../services/spotify.service";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -17,6 +17,8 @@ export const getArtistAction = async (artistName) => {
 
 
 function DashboardPage(page) {
+
+
 
   const [artistName, setArtistName] = useState("");
   const [loading, setLoading] = useState(false);
