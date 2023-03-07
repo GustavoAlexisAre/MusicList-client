@@ -11,7 +11,6 @@ import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
 import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import VolumeUpRounded from '@mui/icons-material/VolumeUpRounded';
 import VolumeDownRounded from '@mui/icons-material/VolumeDownRounded';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 
@@ -94,17 +93,6 @@ const {tracks} = playlist
   
   return (
     <div>
-             <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>{playlist.name}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-         
             <Box sx={{ width: '100%', overflow: 'hidden' }}>
       <Widget>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -227,9 +215,7 @@ const {tracks} = playlist
       </Widget>
     </Box>
     
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+     
     </div>
   )
 }

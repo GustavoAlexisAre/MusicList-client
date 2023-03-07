@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-const baseURL = "http://localhost:5005/user"
+const baseURL = process.env.REACT_APP_SERVER_URL ||"http://localhost:5005/user"
 
 const spotifyService = axios.create({baseURL: baseURL})
 
