@@ -3,7 +3,7 @@ import axios from "axios"
 
 const baseURL = process.env.REACT_APP_SERVER_URL ||"http://localhost:5005/user"
 
-const spotifyService = axios.create({baseURL: baseURL})
+const spotifyService = axios.create({baseURL: baseURL + "/user"})
 
 export const getArtist = async (artistName) => await spotifyService.get(`/artists/${artistName}`)
 
