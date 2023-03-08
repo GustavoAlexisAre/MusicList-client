@@ -15,12 +15,12 @@ export const createPlayList = async (PlaylistName) => await spotifyService.post(
 
 export const getPlayList = async () => await spotifyService.get("/playlist")
 
-export const DeletePlayList = async (PlaylistId) => await spotifyService.delete(`/playlist/${PlaylistId}`)
+export const DeletePlayList = async (playlistData) => await spotifyService.delete(`/playlist/${playlistData.playlistId}/${playlistData.userId}`)
 
 export const UpdatePlayList = async (PlaylistId, name) => await spotifyService.get(`/playlist/${PlaylistId}`, {name})
 
 export const CreateSong = async (SongData) => await spotifyService.post("/song", SongData)
 
-export const DeleteSong = async (SongId) => await spotifyService.delete(`/song/${SongId}`)
+export const DeleteSong = async (SongId) => await spotifyService.delete(`/song/${SongId.trackId}/${SongId.playlistId}`)
 
 export const getUser = async (userId) => await spotifyService.get(`/user/${userId}`)

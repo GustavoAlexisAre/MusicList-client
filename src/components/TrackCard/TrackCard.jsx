@@ -14,18 +14,17 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import {CreateSong} from "../../services/spotify.service"
+import {CreateSong, getUser} from "../../services/spotify.service"
+import { useEffect } from 'react';
 
 
 function TrackCard({track, user}) {
-
-  // console.log(user.playlists)
-  // console.log(track)
   
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event, track) => {
     setAnchorEl(event.currentTarget);
+    setSelectedTrack(track)
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -33,6 +32,19 @@ function TrackCard({track, user}) {
     
 
 const {album, artist, tracks} = track
+
+const [Userupdate, setUserupdate] = useState(null);
+const [selectedTrack, setSelectedTrack] = useState(null)
+
+
+useEffect(() => {
+  const UserData = async () => {
+    const data = await getUser(user._id);
+    setUserupdate(data);
+  };
+  UserData();
+}, [user._id]);
+
 
 
 
@@ -48,8 +60,7 @@ const {album, artist, tracks} = track
         stopE1.currentTime = 0;
       }
 
-      const Song = (id, trackName, trackUrl) => { CreateSong({name:trackName, artist:artist.name, disc:album.name, image:album.image, url:trackUrl, id})
-      console.log(tracks.name, artist.name, album.name, album.image, track.previewUrl, id)
+      const Song = (id, trackName, trackUrl) => { CreateSong({name:trackName, artist:artist.name, disc:album.name, image:album.image, url:trackUrl, id, selectedTrack})
       handleClose() }
 
   return (
@@ -79,7 +90,7 @@ const {album, artist, tracks} = track
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        onClick={(event)=> handleClick(event, track)}
       >
       <PlaylistAddIcon/>
       </Button>
@@ -92,7 +103,7 @@ const {album, artist, tracks} = track
           'aria-labelledby': 'basic-button',
         }}
       >
-      {user ? user.playlists.map((folder) => (<MenuItem onClick={()=> Song(folder._id, track.name, track.previewUrl)}>{folder.name}</MenuItem>)):null}
+      {selectedTrack && Userupdate &&  Userupdate.data.data.playlists.map((folder) => (<MenuItem key={folder.id} onClick={()=> Song(folder._id, selectedTrack.name, selectedTrack.previewUrl)}>{folder.name}</MenuItem>))}
         
       </Menu>
           <IconButton aria-label="next">

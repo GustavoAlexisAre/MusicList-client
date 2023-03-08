@@ -1,4 +1,19 @@
 .profilepage{
     background-color: #480CA8;
-    height: fit-content
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:white;
+}
+
+.playlist{
+  
+}
+
+.findmusic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }

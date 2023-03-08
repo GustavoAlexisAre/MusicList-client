@@ -20,7 +20,6 @@ export const createPlayListAction = async({request}) => {
 }
 
 
-
 function ProfilePage() {
  const { user, authenticateUser } = useOutletContext()
 //  authenticateUser()
@@ -36,19 +35,17 @@ useEffect(() => {
   UserData();
 }, [user._id]);
 
-console.log(Userupdate)
 
   return (
+
+    
     <div className="profilepage">
-      <h1>Profile page</h1>
-      <Typography>{user.name}</Typography>
-{/* playlist */}
-{Userupdate ? Userupdate.data.data.playlists.map((playlists) => (
-  <Playlist key={playlists._id} {...playlists}/>
-)):null}
-      <Button>Nueva Playlist</Button>
-{/* modal for input playlist */}
-      <Form action="/profile" method="POST">
+  <Typography>{user.name}</Typography>
+<div className="findmusic">
+<Typography>Profile page</Typography>
+    
+
+<Form action="/profile" method="POST">
       <input type="hidden" name="userId" value={user._id} />
         <Box
         sx={{
@@ -77,7 +74,13 @@ console.log(Userupdate)
       <Button type="submit" variant="contained" sx={{ bgcolor: "#F72585" }}>Create </Button>
       </div>
     </Form>
-      
+</div>
+
+ 
+{/* playlist */}
+{Userupdate ? Userupdate.data.data.playlists.map((playlists) => (
+  <Playlist className="playlist" key={playlists._id} {...playlists}/>
+)):null}
     </div>
   );
 }

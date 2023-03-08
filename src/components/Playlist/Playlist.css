@@ -1,0 +1,14 @@
+.eachSong{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+img{
+    width: 100px;
+}
+
+Button{
+    margin: 100px;
+}
