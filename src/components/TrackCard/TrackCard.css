@@ -1,6 +1,7 @@
 .trackCard{
    
-    background-color: #4895EF;
+    background: rgb(247,37,133);
+    background: linear-gradient(180deg, rgba(247,37,133,1) 0%, rgba(123,11,180,1) 59%, rgba(38,4,44,1) 95%);
     width: 100vw;
     height: 110vh;
    padding-top: 40px;
