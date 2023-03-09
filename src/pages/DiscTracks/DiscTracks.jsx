@@ -14,9 +14,9 @@ export const getTrackLoader = async ({params}) => {
 function DiscTracks() {
 
   const { user} = useOutletContext()
-  console.log(user)
+  // console.log(user)
   const {tracks} = useLoaderData()
-    // console.log(tracks)
+    console.log("https://www.youtube.com/watch?v=1mHGxxWJY28")
    
 
   return (

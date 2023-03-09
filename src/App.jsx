@@ -20,6 +20,7 @@ import DashboardPage, { getArtistAction } from "./pages/DashboardPage/Dashboard"
 import NavbarUser from "./components/NavbarUser/NavbarUser";
 import DiscDetails, { getDiscLoader } from "./pages/DiscDetails/DiscDetails";
 import DiscTracks, { getTrackLoader } from "./pages/DiscTracks/DiscTracks";
+import PlaylistPage, { getPlayliststLoader } from "./pages/PlaylistPage/PlaylistPage";
 
 
 const router = createBrowserRouter(
@@ -53,6 +54,16 @@ const router = createBrowserRouter(
         <IsPrivate>
            <NavbarUser/>
           <DashboardPage />
+        </IsPrivate>
+      }
+    />
+    <Route
+      path="/playlists"
+      loader={getPlayliststLoader}
+      element={
+        <IsPrivate>
+           <NavbarUser/>
+          <PlaylistPage />
         </IsPrivate>
       }
     />

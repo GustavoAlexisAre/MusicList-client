@@ -21,7 +21,7 @@ export const createPlayListAction = async({request}) => {
 
 
 function ProfilePage() {
- const { user, authenticateUser } = useOutletContext()
+ const { user } = useOutletContext()
 //  authenticateUser()
 
 

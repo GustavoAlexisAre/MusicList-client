@@ -46,8 +46,6 @@ useEffect(() => {
 }, [user._id]);
 
 
-
-
     const playAudio = (track) => {
       const audioEl = document.getElementById(`audio-${track.id}`);        
       audioEl.play();

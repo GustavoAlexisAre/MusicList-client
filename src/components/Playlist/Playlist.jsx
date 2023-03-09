@@ -3,24 +3,31 @@ import * as React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Form, useOutletContext } from 'react-router-dom';
 import  "./Playlist.css"
-import { DeletePlayList, DeleteSong, getUser } from '../../services/spotify.service';
+import { DeletePlayList, DeleteSong, getUser, UpdatePlayList } from '../../services/spotify.service';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
-
-
-
+import { useNavigate, redirect, useRevalidator } from 'react-router-dom';
 
 function Playlist(playlist) {
 
   const { user, authenticateUser } = useOutletContext()
 
-  
+  const coquita = useNavigate()
+  // const pepsita = useRevalidator()
   const [Userupdate, setUserupdate] = useState(null);
-  console.log(Userupdate)
+  const [newName, setNewName] = useState(playlist.name);
+  
 
-  const deletePl = (playlistId, userId) => DeletePlayList({playlistId, userId})
-  const deleteTrack = (playlistId, trackId) => DeleteSong({playlistId, trackId})
+  const deletePl =  (playlistId, userId) => {DeletePlayList({playlistId, userId}) 
+  return coquita(0)}
+ 
+  const deleteTrack = (playlistId, trackId) => {DeleteSong({playlistId, trackId})
+  return coquita(0)}
+
+
+  const updatePlaylist = (playlistId, newName) => UpdatePlayList({playlistId, newName})
+
+
 
 useEffect(() => {
   const UserData = async () => {
@@ -39,9 +46,14 @@ useEffect(() => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-        <Form action={`/playlist/${playlist._id}/${user._id}`} method="POST">
-        <TextField sx={{ borderColor: 'white'}} id="outlined-basic"  variant="outlined" label={playlist.name} defaultValue={playlist.name} name="name"/> 
-        <Button >Edit</Button>
+        <Form onSubmit={(event) => {
+            event.preventDefault();
+            coquita(0)
+            updatePlaylist(playlist._id, newName)
+          }} method="POST">
+        <TextField sx={{ borderColor: 'white'}} id="outlined-basic"  variant="outlined" label={playlist.name}  value={newName} 
+              onChange={(event) => setNewName(event.target.value)} name="name"/> 
+        <Button type="submit" >Edit</Button>
         <Button onClick={() => deletePl(playlist._id, user._id)}>Delete</Button>
         </Form>
         

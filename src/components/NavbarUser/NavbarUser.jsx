@@ -15,7 +15,7 @@ import { useOutletContext } from 'react-router-dom';
 import "./NavbarUser.css"
 
 
-const pages = ['Dashboard', 'Profile', 'Logout']
+const pages = ['Dashboard', 'Profile','Playlists','Home', 'Logout']
 
 export default function NavbarUser() {
   const [state, setState] = React.useState({
@@ -56,26 +56,27 @@ const { isLoggedIn, user, logOutUser } = useOutletContext()
             </ListItemButton>
           </ListItem>
           <ListItem key={pages} disablePadding>
+          <ListItemButton>
+            <Link underline="none" href='/playlists' color="inherit">
+                  <Typography>{pages[2]}</Typography>
+            </Link>
+            </ListItemButton>
+            </ListItem>
+            <ListItem key={pages} disablePadding>
+          <ListItemButton>
+            <Link underline="none" href='/' color="inherit">
+                  <Typography>{pages[3]}</Typography>
+            </Link>
+            </ListItemButton>
+            </ListItem>
+          <ListItem key={pages} disablePadding>
             <ListItemButton>
             <Link underline="none" href='/' onClick={logOutUser} color="inherit">
-                  <Typography>{pages[2]}</Typography>
+                  <Typography>{pages[4]}</Typography>
             </Link>
             </ListItemButton>
           </ListItem>
         
-      </List>
-      <Divider><Typography>Playlists</Typography></Divider>
-      <List>
-        {['Playlist-1', 'Playlist-2', 'Playlist-3'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
       </List>
     </Box>
   );
