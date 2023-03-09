@@ -16,6 +16,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {CreateSong, getUser} from "../../services/spotify.service"
 import { useEffect } from 'react';
+import { Alert, AlertTitle, Dialog, Snackbar } from '@mui/material';
 
 
 function TrackCard({track, user}) {
@@ -25,11 +26,17 @@ function TrackCard({track, user}) {
   const handleClick = (event, track) => {
     setAnchorEl(event.currentTarget);
     setSelectedTrack(track)
+  
   };
+
+  const [open1, setOpen1] = React.useState(false);
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen1(!open1);
   };
-    
+
+ 
+
 
 const {album, artist, tracks} = track
 
@@ -69,7 +76,7 @@ useEffect(() => {
          <Card sx={{ display: 'flex' }} key={track.id} className="CardMusic">
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h6">
+          <Typography component="div" variant="body1">
           <input type="hidden" name="name" value={track.name} />
           <input type="hidden" name="id" value={track._id} />
             {track.name}
@@ -101,9 +108,15 @@ useEffect(() => {
           'aria-labelledby': 'basic-button',
         }}
       >
-      {selectedTrack && Userupdate &&  Userupdate.data.data.playlists.map((folder) => (<MenuItem key={folder.id} onClick={()=> Song(folder._id, selectedTrack.name, selectedTrack.previewUrl)}>{folder.name}</MenuItem>))}
+      {selectedTrack && Userupdate &&  Userupdate.data.data.playlists.map((folder) => (<MenuItem key={folder.id} onClick={()=> Song(folder._id, selectedTrack.name, selectedTrack.previewUrl)}>{folder.name}</MenuItem>
+      ))}
         
       </Menu>
+      <Snackbar open={open1} autoHideDuration={6000} onClose={()=> handleClose}>
+  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+    Your Song is Now in Your Playlist
+  </Alert>
+</Snackbar>
           <IconButton aria-label="next">
            <StopIcon onClick={() => stopAudio(track)}/>
           </IconButton>

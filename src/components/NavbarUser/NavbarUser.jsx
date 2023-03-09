@@ -10,7 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Link, Typography } from '@mui/material';
+import { Avatar, Link, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import "./NavbarUser.css"
 
@@ -41,6 +41,12 @@ const { isLoggedIn, user, logOutUser } = useOutletContext()
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+
+      <ListItem>
+      <Avatar alt="" src="https://i.pinimg.com/originals/54/61/8e/54618e7e5e34af1388dfd703ec3d6554.jpg" />
+        <Typography>{user.name}</Typography>
+      </ListItem>
+      <hr/>
           <ListItem key={pages} disablePadding>
             <ListItemButton>
             <Link underline="none" href="/dashboard" color="inherit">

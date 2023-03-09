@@ -40,6 +40,7 @@ useEffect(() => {
 
   return (
     <div key={playlist._id}>
+    <div className="cardPl">
              <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -75,6 +76,7 @@ useEffect(() => {
       
         </AccordionDetails>
       </Accordion>
+      </div>
     </div>
   )
 }

@@ -1,13 +1,11 @@
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button/Button";
-import { Form, redirect, useLoaderData, useOutletContext } from "react-router-dom";
+import { Form, redirect,  useOutletContext } from "react-router-dom";
 import "./ProfilePage.css";
-import { createPlayList, getPlayList, getUser } from "../../services/spotify.service";
+import { createPlayList,  getUser } from "../../services/spotify.service";
 import { useEffect, useState } from "react";
-import { getArtist } from "../../services/spotify.service";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import ArtistCard from "../../components/ArtistCard/ArtistCard"
 import Playlist from "../../components/Playlist/Playlist";
 
 
@@ -40,9 +38,8 @@ useEffect(() => {
 
     
     <div className="profilepage">
-  <Typography>{user.name}</Typography>
 <div className="findmusic">
-<Typography>Profile page</Typography>
+<Typography>Playlist Maker</Typography>
     
 
 <Form action="/profile" method="POST">
@@ -76,11 +73,12 @@ useEffect(() => {
     </Form>
 </div>
 
- 
+ <div className="playlistDiv">
 {/* playlist */}
 {Userupdate ? Userupdate.data.data.playlists.map((playlists) => (
   <Playlist className="playlist" key={playlists._id} {...playlists}/>
 )):null}
+</div>
     </div>
   );
 }

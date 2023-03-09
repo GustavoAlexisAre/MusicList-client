@@ -3,13 +3,20 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin:0 50px;
-    background-color: #4895EF;
+    padding-top: 100px;
+    margin-left: 200px;
+    width: 75vw;    
+    color: white;
 }
 
 .playlistdetails{
     background-color: #480CA8;
     height: 100% ;
+    padding-bottom: 96.2vh;
 }
 
+.cardpl1{
+    margin-top: 40px;
+}

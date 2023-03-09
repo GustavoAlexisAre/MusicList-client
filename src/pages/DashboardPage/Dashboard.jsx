@@ -18,8 +18,6 @@ export const getArtistAction = async (artistName) => {
 
 function DashboardPage(page) {
 
-
-
   const [artistName, setArtistName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

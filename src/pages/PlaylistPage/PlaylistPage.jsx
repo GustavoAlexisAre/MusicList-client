@@ -3,6 +3,7 @@ import React from 'react'
 import { getPlayList } from '../../services/spotify.service'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useLoaderData } from 'react-router-dom';
+import "./PlaylistPage.css"
 
 
 
@@ -21,8 +22,9 @@ function PlaylistPage() {
   
 <div  className='playlistdetails'>
     <div className='cardplaylist'>
+    <Typography>Playlists</Typography>
     {playlists.map((playlist)=> (
-
+      <div className='cardpl1'>
           <Accordion>
    <AccordionSummary
      expandIcon={<ExpandMoreIcon />}
@@ -46,6 +48,7 @@ function PlaylistPage() {
         ))}
    </AccordionDetails>
  </Accordion>
+ </div>
     ))}
   
 </div>

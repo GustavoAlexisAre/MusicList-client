@@ -2,9 +2,9 @@
    
     background-color: #4895EF;
     width: 100vw;
-    height: 96.2vh;
-    padding: 40px;
-    border: 1px solid black;
+    height: 110vh;
+   padding-top: 40px;
+   padding-left: 90px;
 
 }
 
@@ -16,9 +16,9 @@
 }
 
 .trackcardBox{
-    border: 1px solid black; 
+    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: min-content;
+    height: max-content;
 }
