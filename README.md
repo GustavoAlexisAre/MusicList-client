@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+Bueno, esta aplicacion es una recopilacion de mis dos pasiones, el audio y la programacion, y trata de una pagiana que trabaja mediante el llamado de una API que utilizamos en el curso, pero la diferencia fue
+que la pude implementar para que ademas de traerme la informacion, poder generar que el usuario de esta app pueda hacer el CRUD sin afectar a los demas usuarios. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Al crear la apliacion con el Ironlaucher, nos ayudo mucho a poder adelantar cierta parte del trabajo pero eso no quiere decir que fuera suficiente, pude emplementar todos los metodos que vimos durante el curso y hacer una pagina completa y que pudera ser algo divertido para todos y si es posible que la pudieran usar mis futuros compañeros que se inscriban en el curso y vean las posibilidades que te puede dar el curso. 
 
-## Available Scripts
+Al ser una pagina que parece sencilla desde el front, el back exige un acomodo de rutas muy bien planificado y planteado para poder generar una comunicacion entre el back y front, ademas de que al poder generar una base de datos la hace una pagina muy segura para navegar muy rapida. 
 
-In the project directory, you can run:
+En cuanto a los diseños fue una combinacion entre la libreria de MUI y CSS para poder darle ciertos estilos pero no cargarla con mucha demanada de recursos. 
 
-### `npm start`
+Yo la verdad estoy muy agradecido con mis maestros: Harland, Sandy y Jose Carlos que me apoyaron y me ayudaron a realizar una aplicacion que vale la pena y pueda representar mis gustos y mi la persona que soy. 
+Tambien con mis compañeros que entre todos nos apoyamos para poder terminar nuestras paginas y poder mostrar un contenido de calidad :D 
+Y a mi familia que estuvo siempre conmigo. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Y sin olvidar al amor de mi vida que me apoyo siempre.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### `npm test`
+Well, this application is a compilation of my two passions, audio and programming, and it deals with a page that works by calling an API that we use in the course, but the difference was
+I could implement it so that, in addition to bringing me the information, I can generate that the user of this app can do the CRUD without affecting other users.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+By creating the application with Ironlaucher, it helped us a lot to be able to carry out a certain part of the work, but that does not mean that it was enough, I was able to implement all the methods that we saw during the course and make a complete page that could be something fun for everyone And if it is possible that my future colleagues could use it to enroll in the course and see the possibilities that the course can give you.
 
-### `npm run build`
+Being a page that seems simple from the front, the back requires a well-planned and planned arrangement of routes to be able to generate communication between the back and front, in addition to being able to generate a database makes it a very secure page to navigate very fast.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As for the designs, it was a combination between the MUI and CSS library to be able to give it certain styles but not load it with a lot of demand for resources.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I am really grateful to my teachers: Harland, Sandy and Jose Carlos who supported me and helped me make an application that is worthwhile and can represent my tastes and the person I am.
+Also with my colleagues who support each other to be able to finish our pages and to be able to show quality content: D
+And to my family who was always with me.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+And without forgetting the love of my life who always supports me.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
