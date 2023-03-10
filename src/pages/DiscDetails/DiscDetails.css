@@ -5,13 +5,17 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin:0 50px;
-    background: rgb(247,37,133);
-    background: linear-gradient(180deg, rgba(247,37,133,1) 0%, rgba(123,11,180,1) 59%, rgba(38,4,44,1) 95%);
+    /* background: rgb(247,37,133);
+    background: linear-gradient(180deg, rgba(247,37,133,1) 0%, rgba(123,11,180,1) 59%, rgba(38,4,44,1) 95%); */
+    
 }
 
 .discdetails{
     background: rgb(247,37,133);
     background: linear-gradient(180deg, rgba(247,37,133,1) 0%, rgba(105,9,121,1) 50%, rgba(0,0,0,1) 100%);
     height: 100% ;
+    padding-top: 100px;
+    padding-left: 250px;
+
 }
 
