@@ -110,10 +110,11 @@ function SignupPage() {
 		  <Typography>Already have account?</Typography>
 			<Button  href={"/login"}> Login</Button>
 		 </div>
+		 {errorMessage && <Typography className="error-message">{errorMessage}</Typography>}
 		</div>	
 			</Form>
 
-			{errorMessage && <p className="error-message">{errorMessage}</p>}
+			
 
 			
 	</div>
