@@ -35,8 +35,6 @@ function Playlist(playlist) {
   const updatePlaylist = (playlistId, newName) => UpdatePlayList({playlistId, newName})
 
 
-
-
 useEffect(() => {
   const UserData = async () => {
     const data = await getUser(user._id);
