@@ -71,6 +71,7 @@ useEffect(() => {
       <Button type="submit" variant="contained" sx={{ bgcolor: "#F72585" }}>Create </Button>
       </div>
     </Form>
+    
 </div>
 
  <div className="playlistDiv">
