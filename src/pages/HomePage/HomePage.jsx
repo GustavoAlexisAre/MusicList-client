@@ -44,9 +44,9 @@ function HomePage() {
         <Typography>Share it with your friends and make the biggest playlist ever.</Typography>
       </ThemeProvider>
       {isLoggedIn && (
-          <Link  underline="none" href="/dashboard" className="button">
+          <Link  underline="none" href="/profile" className="button">
 						{" "}
-						<Button sx={{ bgcolor: "#F72585" }} className="button" variant="contained"><Typography sx={{fontSize:25}}>Dashboard</Typography></Button>
+						<Button sx={{ bgcolor: "#F72585" }} className="button" variant="contained"><Typography sx={{fontSize:25}}>Profile</Typography></Button>
 					</Link>
       )}
       {!isLoggedIn && (
