@@ -60,154 +60,154 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static"  sx={{ bgcolor: "#F72585" }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <PianoIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            MusicList
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+      <AppBar position="static"  sx={{ bgcolor: "#F72585" }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <PianoIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <PianoIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            MusicList
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+              MusicList
+            </Typography>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {!isLoggedIn && (
-                <Avatar alt="" src={AccountCircleIcon} />
-              )}
-              {isLoggedIn && (
-                <Avatar alt="" src="https://i.pinimg.com/originals/54/61/8e/54618e7e5e34af1388dfd703ec3d6554.jpg" />
-              )}
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <PianoIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              
-                {isLoggedIn && (
-                  <>
-                <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline="none" href="/profile" color="inherit">
-                  <Typography>{settings[0]}</Typography>
-                  </Link>
-                </MenuItem> 
-                <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline="none" href="/dashboard" color="inherit">
-                  <Typography>{settings[1]}</Typography>
-                  </Link>
-                </MenuItem> 
-                <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline='none' component="button" variant="body2" onClick={logOutUser} color="inherit">
-                  <Typography>{settings[2]}</Typography>
-                  </Link>
-                </MenuItem>
-                </>
-                )}
+              MusicList
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {!isLoggedIn && (
-                <MenuItem key={settings} onClick={handleCloseUserMenu}>
-                <Link underline="none" href="/login" color="inherit">
-                  <Typography>{settings[3]}</Typography>
-                  </Link>
-                </MenuItem>
+                  <Avatar alt="" src={AccountCircleIcon} />
                 )}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                {isLoggedIn && (
+                  <Avatar alt="" src="https://i.pinimg.com/originals/54/61/8e/54618e7e5e34af1388dfd703ec3d6554.jpg" />
+                )}
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                
+                  {isLoggedIn && (
+                    <>
+                  <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                  <Link underline="none" href="/profile" color="inherit">
+                    <Typography>{settings[0]}</Typography>
+                    </Link>
+                  </MenuItem> 
+                  <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                  <Link underline="none" href="/dashboard" color="inherit">
+                    <Typography>{settings[1]}</Typography>
+                    </Link>
+                  </MenuItem> 
+                  <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                  <Link underline='none' component="button" variant="body2" onClick={logOutUser} color="inherit">
+                    <Typography>{settings[2]}</Typography>
+                    </Link>
+                  </MenuItem>
+                  </>
+                  )}
+                  {!isLoggedIn && (
+                  <MenuItem key={settings} onClick={handleCloseUserMenu}>
+                  <Link underline="none" href="/login" color="inherit">
+                    <Typography>{settings[3]}</Typography>
+                    </Link>
+                  </MenuItem>
+                  )}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
   );
 }
 export default ResponsiveAppBar;
